@@ -1,0 +1,211 @@
+﻿<Window x:Class="SP_EEG.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_EEG"
+        mc:Ignorable="d"
+        Title="EEG Tool" MinHeight="720" Background="#F5F3EE" MaxHeight="720" MinWidth="1280" MaxWidth="1280" Loaded="Window_Loaded" Closing="Window_Closing" x:Name="_this" Width="1224" Height="768">
+    <Window.Resources>
+        <local:CogActionConverter x:Key="CogActionConverter"/>
+    </Window.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Name="Tooltip" Height="1*" MinHeight="24" MaxHeight="24"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Name="StatusBar" Height="1*" MinHeight="27" MaxHeight="27"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ToolBar Background="Transparent" Band="1" BandIndex="1" Width="1265">
+                <Button Style="{DynamicResource ButtonStyleTooltipS1}" Background="#F5F3EE" Foreground="#093145" Click="connHs_Click">Connect Headset</Button>
+                <Separator/>
+                <Button Style="{DynamicResource ButtonStyleTooltipS1}" Foreground="#093145" Background="Transparent" Click="disHs_Click">Disconnect Headset</Button>
+                <Separator/>
+                <Button Style="{DynamicResource ButtonStyleTooltipS1}" Foreground="#093145" Background="Transparent">Settings</Button>
+                <Separator/>
+                <Button Style="{DynamicResource ButtonStyleTooltipS1}" Foreground="#093145" Background="Transparent">Exit</Button>
+            </ToolBar>
+        </ToolBarTray>
+
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+
+            <Label FontWeight="DemiBold" x:Name="cogActionLbl" Content="{Binding Path=CogAction, Converter={StaticResource CogActionConverter}}" HorizontalAlignment="Left" Margin="265,21,0,0" VerticalAlignment="Top"/>
+
+            <Label FontWeight="DemiBold" x:Name="cogPowerLbl" Content="{Binding Path=CogPower}" HorizontalAlignment="Left" Margin="343,21,0,0" VerticalAlignment="Top"/>
+
+            <GroupBox Foreground="Transparent" Background="Transparent" x:Name="groupBoxHeadset" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" MaxHeight="275" MinHeight="275" MinWidth="223" MaxWidth="223" Width="250" BorderThickness="0" BorderBrush="{x:Null}">
+                <GroupBox.Header>
+                    <TextBlock Text="Connectivity" FontWeight="Bold"/>
+                </GroupBox.Header>
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Source="Img\head.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+
+                    <Ellipse x:Name="f7" Height="20" Width="20" Fill="Black" Margin="116,66,75,151"/>
+                    <Ellipse x:Name="af3" Height="20" Width="20" Fill="Black" Margin="136,39,55,178"/>
+                    <Ellipse x:Name="af4" Height="20" Width="20" Fill="Black" Margin="52,39,139,178"/>
+                    <Ellipse x:Name="f8" Height="20" Width="20" Fill="Black" Margin="72,66,119,151"/>
+                    <Ellipse x:Name="f4" Height="20" Width="20" Fill="Black" Margin="24,70,167,147"/>
+                    <Ellipse x:Name="f3" Height="20" Width="20" Fill="Black" Margin="164,70,27,147"/>
+                    <Ellipse x:Name="fc5" Height="20" Width="20" Fill="Black" Margin="146,88,45,129"/>
+                    <Ellipse x:Name="fc6" Height="20" Width="20" Fill="Black" Margin="42,88,149,129"/>
+                    <Ellipse x:Name="t7" Height="20" Width="20" Fill="Black" Margin="175,114,16,103"/>
+                    <Ellipse x:Name="t8" Height="20" Width="20" Fill="Black" Margin="13,114,178,103"/>
+                    <Ellipse x:Name="cms" Height="20" Width="20" Fill="Black" Margin="164,141,27,76"/>
+                    <Ellipse x:Name="drl" Height="20" Width="20" Fill="Black" Margin="24,141,167,76"/>
+                    <Ellipse x:Name="p7" Height="20" Width="20" Fill="Black" Margin="145,173,46,44"/>
+                    <Ellipse x:Name="o1" Height="20" Width="20" Fill="Black" Margin="119,201,72,16"/>
+                    <Ellipse x:Name="o2" Height="20" Width="20" Fill="Black" Margin="70,201,121,16"/>
+                    <Ellipse x:Name="p8" Height="20" Width="20" Fill="Black" Margin="43,173,148,44"/>
+
+                </Grid>
+            </GroupBox>
+            
+            <GroupBox Foreground="Transparent" Background="Transparent" HorizontalAlignment="Left" Margin="394,10,0,0" VerticalAlignment="Top" Height="275" Width="520" BorderThickness="0" BorderBrush="{x:Null}">
+                <GroupBox.Header>
+                    <TextBlock Text="Controls" FontWeight="Bold"/>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Bold" Content="Headset Mental Command"/>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="Img/Neutral.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="Img/Push.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="Img/Pull.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="Img/Left.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="Img/Right.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <!-- Column 2 -->
+                    <Grid Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Bold" Content="Robot Command"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Normal" Content="Neutral"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Normal" Content="Forward"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Normal" Content="Backwards"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Normal" Content="Left"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Normal" Content="Right"/>
+                    </Grid>
+                    <!-- Column 3 -->
+                    <Grid Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontWeight="Bold" Content="Training Status"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource ButtonS1}" Foreground="#093145" Background="Transparent" Content="{Binding Path=TrainNeutral}" Click="trainNeutral_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource ButtonS1}" Foreground="#093145" Background="Transparent" Content="{Binding Path=TrainPush}" Click="trainPush_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource ButtonS1}" Foreground="#093145" Background="Transparent" Content="{Binding Path=TrainPull}" Click="trainPull_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource ButtonS1}" Foreground="#093145" Background="Transparent" Content="{Binding Path=TrainLeft}" Click="trainLeft_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource ButtonS1}" Foreground="#093145" Background="Transparent" Content="{Binding Path=TrainRight}" Click="trainRight_Click"/>
+                    </Grid>
+                    <Grid Grid.ColumnSpan="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ProgressBar x:Name="prgBar"  IsIndeterminate="True" Visibility="Hidden" Orientation="Horizontal"
+                                     HorizontalAlignment="Center" Height="22" VerticalAlignment="Center" Width="420" Style="{DynamicResource ProgressBarStyleS1}"/>
+                    </Grid>
+                    
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Border BorderBrush="#093145" BorderThickness="1,1,1,0" CornerRadius="3">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="1">
+                        <Label x:Name="engineStatusLbl" FontWeight="DemiBold" ToolTip="Headset engine connection status." Content="{Binding Path=EngineStatus}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="2"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Padding="2"/>
+                        <!--<Label FontWeight="DemiBold" ToolTip="Headset battery status." Content="{Binding Path=BatteryStatus}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="2"/>-->
+                        <Grid Background="Transparent" ToolTip="Battery status." Margin="0">
+                            <Grid.Resources>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                                    <Setter Property="Margin" Value="0,0,0,0" />
+                                </Style>
+                            </Grid.Resources>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                <Rectangle x:Name="batteryStr1" Width="10" Margin="0,0,0,1" Height="5" Fill="Transparent" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="batteryStr2" Width="10" Margin="0,0,0,1" Height="5" Fill="Transparent" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="batteryStr3" Width="10" Margin="0,0,0,1" Height="5" Fill="Transparent" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="batteryStr4" Width="10" Margin="0,0,0,1" Height="5" Fill="Transparent" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Padding="2"/>
+                        <Label MinWidth="55" FontWeight="DemiBold" ToolTip="Time of the current session." Content="{Binding Path=SessionStatus}" ContentStringFormat="{}{0:N0} sec" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="2"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Padding="2"/>
+                        <!--<Label ToolTip="Wi-Fi signal strength." Content="{Binding Path=WifiStatus}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="2,2,10,2"/>-->
+                        <Grid Background="Transparent" ToolTip="Wi-Fi signal strength.">
+                            <Grid.Resources>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                                    <Setter Property="Margin" Value="5,0,0,0" />
+                                </Style>
+                            </Grid.Resources>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Rectangle x:Name="wifiStr1" Width="5" Margin="0,0,5,0" Height="5" Fill="White" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="wifiStr2" Width="5" Margin="0,0,5,0" Height="10" Fill="White" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="wifiStr3" Width="5" Margin="0,0,5,0" Height="15" Fill="White" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="wifiStr4" Width="5" Margin="0,0,5,0" Height="20" Fill="White" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                                <Rectangle x:Name="wifiStr5" Width="5" Margin="0,0,5,0" Height="25" Fill="White" Stroke="Gray" Style="{DynamicResource RectangleStyleS1}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+    </Grid>
+</Window>

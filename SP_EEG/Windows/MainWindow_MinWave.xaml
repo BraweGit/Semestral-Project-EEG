@@ -1,0 +1,270 @@
+﻿<Window x:Class="SP_EEG.MainWindow_MinWave"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_EEG"
+        mc:Ignorable="d"
+        Title="MindWave Tool" Height="550" MinHeight="570" MaxHeight="570" Width="1024" MinWidth="1024" MaxWidth="1024" Loaded="Window_Loaded" Closed="Window_Closed" Closing="Window_Closing">
+    <TabControl>
+        <TabItem Header="EEG Tool">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="86"/>
+                    <ColumnDefinition Width="86"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="95"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="95"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="70*"/>
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="12" Fill="#FBFBFB" />
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.RowSpan="9">
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+
+
+                <!--<Rectangle Grid.Row="0" Fill="#F4F3F3" />-->
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                    <Label x:Name="lblHsControls" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Headset"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                <Button x:Name="connHs" ToolTip="Connect to the headset." Grid.Column="0" Grid.Row="4" Style="{DynamicResource ButtonS2}" IsEnabled="{Binding ConnHs}" 
+                Foreground="Black" FontFamily="Verdana" Background="#F4F3F3" Content="Connect" HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom" Width="90" Click="connHs_Click" Height="35" BorderBrush="#FFC1BBBB" Margin="25,0,0,5"/>
+                <Button x:Name="dissHs" ToolTip="Disconnect from the headset." Grid.Column="0" Grid.Row="4" Style="{DynamicResource ButtonS2}" IsEnabled="{Binding DissHs}"
+                Foreground="Black" FontFamily="Verdana" Background="#F4F3F3" Content="Disconnnect" HorizontalAlignment="Right" Margin="0,0,25,5"
+                VerticalAlignment="Bottom" Width="90" Click="dissHs_Click" Height="35" BorderBrush="#FFC1BBBB"/>
+                <Label x:Name="lblHsStatus" Content="{Binding Path=HeadsetStatus, TargetNullValue='Status: Disconnected',FallbackValue='Status: Disconnected'}"  HorizontalAlignment="Center" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="15" Margin="78,10,70,0" Width="153"/>
+
+                <!--<Rectangle Grid.Row="2" Fill="#F4F3F3" />-->
+
+                <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="0">
+                    <Label x:Name="lblEv3" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="EV3"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                <Button x:Name="connBrick" ToolTip="Connect to the EV3." Grid.Column="0" Grid.Row="6" Style="{DynamicResource ButtonS2}" IsEnabled="{Binding ConnBrick}" 
+                Foreground="Black" FontFamily="Verdana" Background="#F4F3F3" Content="Connect EV3" HorizontalAlignment="Left" Margin="25,0,0,5" 
+                VerticalAlignment="Bottom" Width="90" Height="35" Click="connBrick_Click" BorderBrush="#FFC1BBBB"/>
+                <Button x:Name="dissBrick" ToolTip="Disconnect from the EV3." Grid.Column="0" Grid.Row="6" Style="{DynamicResource ButtonS2}" IsEnabled="{Binding DissBrick}"
+                Foreground="Black" FontFamily="Verdana" Background="#F4F3F3" Content="Disconnect EV3" HorizontalAlignment="Right" Margin="0,0,25,5" 
+                VerticalAlignment="Bottom" Width="100" Height="35" Click="dissBrick_Click" BorderBrush="#FFC1BBBB"/>
+                <Label x:Name="lblEv3Status" Content="{Binding Path=Ev3Status, TargetNullValue='Status: Disconnected',FallbackValue='Status: Disconnected'}"  HorizontalAlignment="Center" Grid.Row="6" Grid.Column="0" VerticalAlignment="Top" FontSize="15" Margin="77,5,77,0"/>
+
+                <!--<Rectangle Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="10" Fill="#F4F3F3" />-->
+
+                <!--<Rectangle Grid.Row="5" Fill="#F4F3F3" />-->
+                <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="0">
+                    <Label x:Name="lblEv3Controls" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="EV3 Controls"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                <Button x:Name="btnForward" ToolTip="Move forward." Style="{DynamicResource ButtonS2}" FontFamily="Marlett" FontSize="30" Foreground="#093145" Background="#F4F3F3" 
+                BorderBrush="#FFC1BBBB" Grid.Column="0" Grid.Row="8" Content="5" HorizontalAlignment="Center" Margin="0,5,0,0" 
+                VerticalAlignment="Top" Width="75" Click="btnForward_Click" Height="33"/>
+                <Button x:Name="btnBackwards" ToolTip="Move backwards." Style="{DynamicResource ButtonS2}" FontFamily="Marlett" FontSize="30" Foreground="#093145" Background="#F4F3F3" 
+                BorderBrush="#FFC1BBBB" Grid.Column="0" Grid.Row="8" Content="6" HorizontalAlignment="Center" Margin="0,0,0,5" 
+                VerticalAlignment="Bottom" Width="75" Click="btnBackwards_Click" Height="33"/>
+                <Button x:Name="btnLeft" ToolTip="Move left." Style="{DynamicResource ButtonS2}" FontFamily="Marlett" FontSize="30" Foreground="#093145" Background="#F4F3F3" 
+                BorderBrush="#FFC1BBBB" Grid.Column="0" Grid.Row="8" Content="3" HorizontalAlignment="Left" Margin="25,0,0,0" 
+                VerticalAlignment="Center" Width="75" Click="btnLeft_Click" Height="33"/>
+                <Button x:Name="btnRight" ToolTip="Move right." Style="{DynamicResource ButtonS2}" FontFamily="Marlett" FontSize="30" Foreground="#093145" Background="#F4F3F3" 
+                BorderBrush="#FFC1BBBB" Grid.Column="0" Grid.Row="8" Content="4" HorizontalAlignment="Right" Margin="0,0,25,0" 
+                VerticalAlignment="Center" Width="75" Click="btnRight_Click" Height="33"/>
+                <Button x:Name="btnStop" ToolTip="Stop." Style="{DynamicResource ButtonS2}" FontFamily="Marlett" FontSize="20" Foreground="#093145" Background="#F4F3F3" 
+                BorderBrush="#FFC1BBBB" Grid.Column="0" Grid.Row="8" Content="g" HorizontalAlignment="Center" Margin="0" 
+                VerticalAlignment="Center" Width="75" Click="btnStop_Click" Height="33"/>
+
+
+                <!--<Rectangle Grid.Row="7" Fill="#F4F3F3" />-->
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                    <Label x:Name="lblLineFollower" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Line Follower"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5">
+                    <Label x:Name="lblColorSensors" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Color Sensors"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="5">
+                    <Label x:Name="lblMindwave" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="COM Ports"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <Button x:Name="btnBlack" Style="{DynamicResource ButtonS2}" FontFamily="Verdana" Foreground="Black" Background="#F4F3F3" BorderBrush="#FFC1BBBB" Grid.Column="2" Grid.Row="1" Content="Line Color" 
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="btnBlack_Click" Height="35" Grid.ColumnSpan="2" />
+                <Button x:Name="btnWhite" Style="{DynamicResource ButtonS2}" FontFamily="Verdana" Foreground="Black" Background="#F4F3F3" BorderBrush="#FFC1BBBB" 
+                Grid.Column="2" Grid.Row="1" Content="Border" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="90" Click="btnWhite_Click" 
+                Height="35" Grid.ColumnSpan="2"/>
+                <Label x:Name="lblBLack" Grid.Column="0" Grid.Row="1" Content="{Binding Path=BlackValue}" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Height="10" Width="10"/>
+                <Label x:Name="lblWhite" Grid.Column="0" Grid.Row="1" Content="{Binding Path=WhiteValue}" HorizontalAlignment="Left" Margin="118,34,0,0" VerticalAlignment="Top" Height="10" Width="10"/>
+                <CheckBox x:Name="chckFollow" Grid.Column="0" Grid.Row="1" FontFamily="Verdana" FontSize="13" Content="Follow the line?"  HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Checked="chckFollow_Checked" Height="24" Width="130"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8">
+                    <Label x:Name="lblEegBrainWaves" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="EEG Brain Waves"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="10" Grid.ColumnSpan="2">
+                    <Label x:Name="lbleSense" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="eSense"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                <Label x:Name="lblDelta" Grid.Column="2" Grid.Row="3" Content="Delta" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label x:Name="lblTheta" Grid.Column="3" Grid.Row="3" Content="Theta" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label x:Name="lblLowAlpha" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>Low<LineBreak/>Alpha</TextBlock>
+                </Label>
+                <Label x:Name="lblHighAlpha" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>High<LineBreak/>Alpha</TextBlock>
+                </Label>
+                <Label x:Name="lblLowBeta" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>Low<LineBreak/>Beta</TextBlock>
+                </Label>
+                <Label x:Name="lblHighBeta" Grid.Column="7" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>High<LineBreak/>Beta</TextBlock>
+                </Label>
+                <Label x:Name="lblLowGamma" Grid.Column="8" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>Low<LineBreak/>Gamma</TextBlock>
+                </Label>
+                <Label x:Name="lblMidGamma" Grid.Column="9" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <TextBlock>Mid<LineBreak/>Gamma</TextBlock>
+                </Label>
+                <Label x:Name="lblAttention" Grid.Column="10" Grid.Row="3" Content="Attention" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label x:Name="lblMeditation" Grid.Column="11" Grid.Row="3" Content="Meditation" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+                <ProgressBar x:Name="prgPowerDelta" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="2" Grid.Row="4" Value="{Binding Path=EegPowerDelta}"  HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerTheta" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="3" Grid.Row="4" Value="{Binding Path=EegPowerTheta}" HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerAlpha1" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="4" Grid.Row="4" Value="{Binding Path=EegPowerAlpha1}"  HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerAlpha2" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="5" Grid.Row="4" Value="{Binding Path=EegPowerAlpha2}" HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerBeta1" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="6" Grid.Row="4" Value="{Binding Path=EegPowerBeta1}"  HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerBeta2" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="7" Grid.Row="4" Value="{Binding Path=EegPowerBeta2}" HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerGamma1" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="8" Grid.Row="4" Value="{Binding Path=EegPowerGamma1}"  HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgPowerGamma2" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="9" Grid.Row="4" Value="{Binding Path=EegPowerGamma2}" HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="50" Orientation="Vertical" Grid.RowSpan="5"/>
+
+                <ProgressBar x:Name="prgAtt" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="10" Grid.Row="4" Value="{Binding Path=AttValue}"  HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="70" Orientation="Vertical" Grid.RowSpan="5"/>
+                <ProgressBar x:Name="prgMed" Style="{DynamicResource ProgressBarStyle1}" Grid.Column="11" Grid.Row="4" Value="{Binding Path=MedValue}" HorizontalAlignment="Left" Height="303" Margin="8,10,0,0" VerticalAlignment="Top" Width="70" Orientation="Vertical" Grid.RowSpan="5"/>
+                <Label x:Name="lblDefaultPort" FontFamily="Verdana" Content="MindWave" Grid.Column="7" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="132"/>
+                <ComboBox x:Name="comboHsPorts" ItemsSource="{Binding Path=ComPorts}" Grid.ColumnSpan="2" Grid.Column="7" HorizontalAlignment="Left" Margin="10,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="comboHsPorts_SelectionChanged"/>
+                <ComboBox x:Name="comboEv3Ports" ItemsSource="{Binding Path=ComPorts}" Grid.ColumnSpan="2" Grid.Column="10" HorizontalAlignment="Left" Margin="10,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="comboEv3Ports_SelectionChanged"/>
+                <Label  x:Name="lineFollowInfo" FontFamily="Verdana" FontStyle="Italic" FontSize="10" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="1">
+                    <TextBlock>EV3 robot will follow the line.<LineBreak/>User can control speed of the robot with MindWave<LineBreak/> headset. Robot will move faster with higher intensity<LineBreak/> of attention.</TextBlock>
+                </Label>
+
+                <Label x:Name="lblLine" FontFamily="Verdana" Content="Color Value:" Grid.Column="4" HorizontalAlignment="Left" Margin="0,14,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="83"/>
+                <Label x:Name="lblBorder" FontFamily="Verdana" Content="Color Value:" Grid.Column="4" HorizontalAlignment="Left" Margin="0,54,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <Label x:Name="label" FontFamily="Verdana" Content="{Binding Path=LineColor, TargetNullValue='None',FallbackValue='None'}" Grid.Column="5" HorizontalAlignment="Left" Margin="10,14,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="label1" FontFamily="Verdana" Content="{Binding Path=BorderColor, TargetNullValue='None',FallbackValue='None'}"  Grid.Column="5" HorizontalAlignment="Left" Margin="10,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="lblEv3Port" FontFamily="Verdana" Content="EV3" Grid.Column="10" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="132"/>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Debug">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="86"/>
+                    <ColumnDefinition Width="86"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75*"/>
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="12" Fill="#FBFBFB" />
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.RowSpan="9">
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                    <Label x:Name="lblSettings" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Turn Coefficient"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <TextBox x:Name="txtTurnCoefficientValue" Text="{Binding Path=TurnCoefficientValue, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right" Width="40" Height="25" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Margin="245,0,0,15"/>
+                <Slider x:Name="slTurnCoefficientValue" Value="{Binding Path=TurnCoefficientValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Maximum="5" TickPlacement="BottomRight" TickFrequency="0.25" IsSnapToTickEnabled="True" Margin="15,0,0,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Width="225" Height="35"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                    <Label x:Name="lblSettings2" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Forward Power Scale"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <TextBox x:Name="txtForwardPowerScale" Text="{Binding Path=ForwardPowerScaleValue, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right" Width="40" Height="25" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" Margin="245,0,0,15"/>
+                <Slider x:Name="slForwardPowerScale" Value="{Binding Path=ForwardPowerScaleValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.25" IsSnapToTickEnabled="True" Margin="15,0,0,5" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" Width="225" Height="35"/>
+
+
+                <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+                    <Label x:Name="lblSettings3" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Turn Power Scale"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <TextBox x:Name="txtTurnPowerScale" Text="{Binding Path=TurnPowerScaleValue, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right" Width="40" Height="25" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" Margin="245,0,0,15"/>
+                <Slider x:Name="slTurnPowerScale" Value="{Binding Path=TurnPowerScaleValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.25" IsSnapToTickEnabled="True" Margin="15,0,0,5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" Width="225" Height="35"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="0">
+                    <Label x:Name="lblSettings4" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Color Treshold"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <TextBox x:Name="txtColorTreshold" Text="{Binding Path=ColorTresholdValue, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right" Width="40" Height="25" Grid.Row="7" Grid.Column="0" VerticalAlignment="Bottom" Margin="245,0,0,15"/>
+                <Slider x:Name="slColorTreshold" Value="{Binding Path=ColorTresholdValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Margin="15,0,0,5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Bottom" Width="225" Height="35"/>
+
+
+                <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="0">
+                    <Label x:Name="lblSettings5" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Maximum Attention"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <TextBox x:Name="txtMaxAttention" Text="{Binding Path=MaxAttentionValue, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right" Width="40" Height="25" Grid.Row="9" Grid.Column="0" VerticalAlignment="Bottom" Margin="245,0,0,15"/>
+                <Slider x:Name="slMaxAttention" Value="{Binding Path=MaxAttentionValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Margin="15,0,0,5" Grid.Row="9" Grid.Column="0" VerticalAlignment="Bottom" Width="225" Height="35"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5">
+                    <Label x:Name="lbl2" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="Color Sensors"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="5">
+                    <Label x:Name="lbl3" FontStyle="Italic" FontFamily="Verdana" Margin="0,0,0,-5" Foreground="Black" Content="COM Ports"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+                
+                
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</Window>
